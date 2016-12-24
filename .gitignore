@@ -1,0 +1,6 @@
+*.pyc
+*.pkl
+.DS_Store
+/.idea/
+.idea/vcs.xml
+/result/
