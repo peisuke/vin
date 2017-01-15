@@ -1,6 +1,6 @@
 # Value Iteration Networks
 
-This is an experimental code for reproducing bellow paper's result using chainer. 
+This is an experimental code for reproducing below paper's result using chainer. 
 
 ```
 A. Tamar, Y. Wu, G. Thomas, S. Levine, P. Abbeel, Value Iteration Networks,
