@@ -127,14 +127,16 @@ def main():
             num_traj = num_traj + 1
 
         test_img = cv2.cvtColor(im, cv2.COLOR_GRAY2BGR)
-
+        reward = (255 * (reward - np.min(reward)) / (np.max(reward) - np.min(reward))).astype(np.uint8)
+        value = (255 * (value - np.min(value)) / (np.max(value) - np.min(value))).astype(np.uint8)
+        
         for s in path:
             cv2.rectangle(test_img, (s[0], s[1]), (s[0], s[1]), (1, 0, 0), -1)
         cv2.rectangle(test_img, (path[0][0], path[0][1]), (path[0][0], path[0][1]), (0, 1, 1), -1)
         cv2.rectangle(test_img, (goal[0], goal[1]), (goal[0], goal[1]), (0, 0, 1), -1)
         cv2.imshow("image", cv2.resize(255 - test_img * 255, (300, 300), interpolation=cv2.INTER_NEAREST))
         cv2.imshow("reward", cv2.resize(reward, (300, 300), interpolation=cv2.INTER_NEAREST))
-        cv2.imshow("value", cv2.resize(value / 80, (300, 300), interpolation=cv2.INTER_NEAREST))
+        cv2.imshow("value", cv2.resize(value, (300, 300), interpolation=cv2.INTER_NEAREST))
         cv2.waitKey(0)
 
 if __name__ == "__main__":
