@@ -27,7 +27,8 @@ def set_state(im):
     mode = 0
     goal = [1, 1]
     pos = [10, 10]
-    while True:
+
+    while mode < 2:
         test_img = cv2.cvtColor(im, cv2.COLOR_GRAY2BGR)
         cv2.rectangle(test_img, tuple(goal), tuple(goal), (0, 0, 1), -1)
         cv2.rectangle(test_img, tuple(pos), tuple(pos), (1, 0, 1), -1)
@@ -35,28 +36,26 @@ def set_state(im):
         cv2.imshow("image", cv2.resize(255 - test_img * 255, (300, 300), interpolation=cv2.INTER_NEAREST))
         key = cv2.waitKey(0)
 
-        if key == ord('h') and mode == 0:
+        if (key == 63234 or key == ord('h')) and mode == 0:
             goal[0] -= 1
-        if key == ord('j') and mode == 0:
+        if (key == 63233 or key == ord('j')) and mode == 0:
             goal[1] += 1
-        if key == ord('k') and mode == 0:
+        if (key == 63232 or key == ord('k')) and mode == 0:
             goal[1] -= 1
-        if key == ord('l') and mode == 0:
+        if (key == 63235 or key == ord('l')) and mode == 0:
             goal[0] += 1
-        if key == ord('h') and mode == 1:
+        if (key == 63234 or key == ord('h')) and mode == 1:
             pos[0] -= 1
-        if key == ord('j') and mode == 1:
+        if (key == 63233 or key == ord('j')) and mode == 1:
             pos[1] += 1
-        if key == ord('k') and mode == 1:
+        if (key == 63232 or key == ord('k')) and mode == 1:
             pos[1] -= 1
-        if key == ord('l') and mode == 1:
+        if (key == 63235 or key == ord('l')) and mode == 1:
             pos[0] += 1
-        if key == ord('m'):
-            mode = 1 - mode
         if key == ord('q'):
             return None, None
         if key == 13:
-            break
+            mode += 1
 
     return pos, goal
 

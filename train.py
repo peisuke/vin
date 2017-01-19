@@ -105,6 +105,7 @@ def main():
     trainer.extend(TestModeEvaluator(test_iter, model, device=args.gpu))
     trainer.extend(extensions.dump_graph('main/loss'))
     trainer.extend(extensions.snapshot(), trigger=(1, 'epoch'))
+    trainer.extend(extensions.snapshot_object(model, 'model_iter_{.updater.iteration}'), trigger=(1, 'epoch'))
     trainer.extend(extensions.LogReport())
 
     trainer.extend(extensions.PrintReport(
